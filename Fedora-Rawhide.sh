@@ -24,12 +24,12 @@ cat > etc/fstab << EOF
 UUID=`blkid -s UUID -o value /dev/sda1` / ext4 defaults 0 0
 EOF
 
-for i in dev proc sys; do
+for i in dev proc run sys; do
   mount --bind /$i $i
 done
 chroot . systemd-machine-id-setup
 
 chroot . yum --assumeyes install kernel grub2
 
-grub2-mkconfig > /boot/grub2/grub.cfg
+chroot . grub2-mkconfig > /boot/grub2/grub.cfg
 chroot . grub2-install /dev/sda
