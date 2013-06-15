@@ -31,5 +31,5 @@ chroot . systemd-machine-id-setup
 
 chroot . yum --assumeyes install kernel grub2
 
-chroot . grub2-mkconfig > /boot/grub2/grub.cfg
+chroot . grub2-mkconfig > boot/grub2/grub.cfg
 chroot . grub2-install /dev/sda
